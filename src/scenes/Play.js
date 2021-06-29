@@ -61,6 +61,7 @@ class Play extends Phaser.Scene {
 
         this.gameOver = false;
 
+        //Attempt to add a Display Timer in game from here
         // 60-second play clock
         scoreConfig.fixedWidth = 0;
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
@@ -110,11 +111,13 @@ class Play extends Phaser.Scene {
         return false;
     }
 
+    //Try creating a new function that randomly chooses from an array of audio explosions
+
     shipExplode(ship) {
         ship.alpha = 0; // hide the ship
         let boom = this.add.sprite(ship.x, ship.y, 'explosion').setOrigin(0,0);
         boom.anims.play('explode');
-        this.sound.play('sfx_explosion');
+        this.sound.play('sfx_explosion'); //replace this with the function name
         boom.on('animationcomplete', () => {
             ship.reset();
             ship.alpha = 1;
